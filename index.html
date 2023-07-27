@@ -10,9 +10,9 @@
  <body x-data="{ highestSupportedUnicodeVersion: 'Unknown' }" x-init="highestSupportedUnicodeVersion = getUnicodeVersion()">
   <div class="flex justify-center items-center w-full min-h-screen">
       <div>
-          <h1 class="text-4xl text-center text-[#c77dff]">Your Device Supports Unicode:  <span x-show="highestSupportedUnicodeVersion !== 'Ancient'" x-text="highestSupportedUnicodeVersion"></span><span class="italic" x-show="highestSupportedUnicodeVersion === 'Ancient'">Ancient</span></h1>
-          <p x-show="highestSupportedUnicodeVersion === 'Ancient'" class="text-center text-[#9d4edd] mt-2">Wow that is a really old Unicode version. It's basically ASCII. (◡︵◡)</p>
-          <hr class="mt-4 bg-gray-500 border-none h-[1px] rounded-2xl" x-show="highestSupportedUnicodeVersion === 'Ancient'" />
+          <h1 class="text-4xl text-center text-[#c77dff]">Your Device Supports Unicode:  <span x-show="highestSupportedUnicodeVersion !== 'Ancient'" x-text="highestSupportedUnicodeVersion"></span><span class="italic" x-cloak="true" x-show="highestSupportedUnicodeVersion === 'Ancient'">Ancient</span></h1>
+          <p x-cloak="true" x-show="highestSupportedUnicodeVersion === 'Ancient'" class="text-center text-[#9d4edd] mt-2">Wow that is a really old Unicode version. It's basically ASCII. (◡︵◡)</p>
+          <hr x-cloak="true" class="mt-4 bg-gray-500 border-none h-[1px] rounded-2xl" x-show="highestSupportedUnicodeVersion === 'Ancient'" />
           <p class="text-center max-w-2xl mt-4 text-[#9d4edd]">This website is something I made to be able to detect what Unicode version a device supports really easily. I hope you enjoy using it!</p>
       </div>
   </div>
