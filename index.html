@@ -7,9 +7,9 @@
      <script type="module" src="app.js"></script>
      <script src="https://unpkg.com/alpinejs" defer></script>
  </head>
- <body>
+ <body x-data="{ highestSupportedUnicodeVersion: 'Unknown' }" x-init="highestSupportedUnicodeVersion = getUnicodeVersion()">
   <div class="flex justify-center items-center w-full min-h-screen">
-      <div x-data>
+      <div>
           <h1 class="text-4xl text-center text-[#c77dff]">Your Device Supports Unicode:  <span x-show="highestSupportedUnicodeVersion !== 'Ancient'" x-text="highestSupportedUnicodeVersion"></span><span class="italic" x-show="highestSupportedUnicodeVersion === 'Ancient'">Ancient</span></h1>
           <p x-show="highestSupportedUnicodeVersion === 'Ancient'" class="text-center text-[#9d4edd] mt-2">Wow that is a really old Unicode version. It's basically ASCII. (◡︵◡)</p>
           <hr class="mt-4 bg-gray-500 border-none h-[1px] rounded-2xl" x-show="highestSupportedUnicodeVersion === 'Ancient'" />
@@ -53,51 +53,55 @@
         return testCanvas.toDataURL() != referenceCanvas.toDataURL();
     }
 
-    const supportsUnicode15 = characterIsSupported('🩷'); // Pink Heart Emoji
-    const supportsUnicode14 = characterIsSupported('🫠') // Melting face Emoji
-    const supportsUnicode13 = characterIsSupported('🧋') // Bubble tea Emoji
-    const supportsUnicode12 = characterIsSupported('🤏') // Pinching hand Emoji
-    const supportsUnicode11 = characterIsSupported('🦘') // Kangaroo Emoji
-    const supportsUnicode10 = characterIsSupported('🤪') // Zany face Emoji
-    const supportsUnicode9 = characterIsSupported('𐒸') // Character from Osage script
-    const supportsUnicode8 = characterIsSupported('🤗') // Hugging face Emoji
-    const supportsUnicode7 = characterIsSupported('🌶️') // Hot pepper emoji
+    function getUnicodeVersion() {
+        let res = ""
+        const supportsUnicode15 = characterIsSupported('🩷'); // Pink Heart Emoji
+        const supportsUnicode14 = characterIsSupported('🫠') // Melting face Emoji
+        const supportsUnicode13 = characterIsSupported('🧋') // Bubble tea Emoji
+        const supportsUnicode12 = characterIsSupported('🤏') // Pinching hand Emoji
+        const supportsUnicode11 = characterIsSupported('🦘') // Kangaroo Emoji
+        const supportsUnicode10 = characterIsSupported('🤪') // Zany face Emoji
+        const supportsUnicode9 = characterIsSupported('𐒸') // Character from Osage script
+        const supportsUnicode8 = characterIsSupported('🤗') // Hugging face Emoji
+        const supportsUnicode7 = characterIsSupported('🌶️') // Hot pepper emoji
 
-    let highestSupportedUnicodeVersion = "";
-    const versionsToCheck = [{
-        version: '7',
-        value: supportsUnicode7
-    },{
-        version: '8',
-        value: supportsUnicode8
-    },{
-        version: '9',
-        value: supportsUnicode9
-    },{
-        version: '10',
-        value: supportsUnicode10
-    },{
-        version: '11',
-        value: supportsUnicode11
-    },{
-        version: '12',
-        value: supportsUnicode12
-    },{
-        version: '13',
-        value: supportsUnicode13
-    },{
-        version: '14',
-        value: supportsUnicode14
-    },{
-        version: '15',
-        value: supportsUnicode15
-    },]
-    versionsToCheck.forEach((version,i) => {
-        if (version.value === true) {
-            highestSupportedUnicodeVersion = version.version
+        const versionsToCheck = [{
+            version: '7',
+            value: supportsUnicode7
+        },{
+            version: '8',
+            value: supportsUnicode8
+        },{
+            version: '9',
+            value: supportsUnicode9
+        },{
+            version: '10',
+            value: supportsUnicode10
+        },{
+            version: '11',
+            value: supportsUnicode11
+        },{
+            version: '12',
+            value: supportsUnicode12
+        },{
+            version: '13',
+            value: supportsUnicode13
+        },{
+            version: '14',
+            value: supportsUnicode14
+        },{
+            version: '15',
+            value: supportsUnicode15
+        },]
+        versionsToCheck.forEach((version,i) => {
+            if (version.value === true) {
+                res = version.version
+            }
+        })
+        if (res === "") {
+            res = "Ancient"
         }
-    })
-    if (highestSupportedUnicodeVersion === "") {
-        highestSupportedUnicodeVersion = "Ancient"
+        return res
     }
+
 </script>
