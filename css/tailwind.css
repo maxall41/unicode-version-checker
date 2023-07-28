@@ -1,9 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
+@font-face {
+    font-family: "BerkelyMonoRegular";
+    src: local("BerkeleyMono-Regular.ttf");
+}
+@font-face {
+    font-family: "BerkelyMonoBold";
+    src: local("BerkeleyMono-Bold.ttf");
+}
+
 *, html {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'BerkelyMonoRegular', sans-serif;
 }
 
 [x-cloak] { display: none !important; }
+
 
 
 @import "tailwindcss/base";
